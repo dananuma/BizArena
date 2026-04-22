@@ -2,17 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { db } from "@/config/firebase.config";
-import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  doc,
-  getDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-} from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import Comments from "@/components/comments"
 
@@ -52,7 +42,7 @@ export default function FeedPage() {
 
   // ❤️ LIKE
   const toggleLike = async (idea) => {
-    if (!session) return;
+    if (!session?.user?.email) return;
 
     const ref = doc(db, "ideas", idea.id);
     const userId = session.user.email;
