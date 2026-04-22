@@ -14,7 +14,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import Comments from "@/Components/comments"
+import Comments from "@/components/comments"
 
 export default function FeedPage() {
   const { data: session } = useSession();
