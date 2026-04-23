@@ -1,20 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "../../config/firebase.config";
-import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  doc,
-  getDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-} from "firebase/firestore";
+import { db } from "@/config/firebase.config";
+import { collection, query, orderBy, onSnapshot, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import Comments from "../../components/Comments"; // ✅ fixed
+import Comments from "@/components/Comments";
 
 export default function FeedPage() {
   const { data: session } = useSession();

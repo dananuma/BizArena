@@ -42,6 +42,7 @@ export default async function Signin() {
                         action={async () => {
                             "use server"
                             await signIn("github")
+                            // 
                         }}
                     >      
                         <button type="submit" className="border p-5 text-3xl rounded-md border-gray-400 cursor-pointer"><FaGithub /></button>
