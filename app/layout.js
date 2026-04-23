@@ -6,13 +6,13 @@ import AuthProvider from "@/components/AuthProvider";
 
 const merriWeather = Merriweather({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"]
-}) 
-
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: "BizArena | Turn Ideas Into Real Businesses",
-  description: "Share business ideas, explore innovations, and collaborate with other enterpreneurs on BizArena.",
+  description:
+    "Share business ideas, explore innovations, and collaborate with other entrepreneurs on BizArena.",
 };
 
 export default function RootLayout({ children }) {
@@ -22,12 +22,12 @@ export default function RootLayout({ children }) {
       className={`${merriWeather.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-       <AuthProvider>
-        <Navbar/>
-        {children}
-        <Footer/>
+        <AuthProvider>
+          <Navbar />
+          {children}
+          <Footer />
         </AuthProvider>
       </body>
     </html>
   );
-} 
+}

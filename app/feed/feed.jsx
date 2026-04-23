@@ -1,14 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { db } from "@/config/firebase.config";
-import { collection, query, orderBy, onSnapshot, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { db } from "../../config/firebase.config";
+import {
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import Comments from "@/components/comments"
+import Comments from "../../components/Comments"; // ✅ fixed
 
 export default function FeedPage() {
   const { data: session } = useSession();
-
   const [ideas, setIdeas] = useState([]);
 
   useEffect(() => {
@@ -60,7 +69,6 @@ export default function FeedPage() {
 
   return (
     <main className="p-6 space-y-6">
-
       {ideas.map((idea) => {
         const likes = Array.isArray(idea.likes)
           ? idea.likes
@@ -74,29 +82,34 @@ export default function FeedPage() {
             {/* USER */}
             <div className="flex gap-3 items-center">
               <div className="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-full">
-                {idea.user?.name?.[0] || "U"}
+                {idea.user?.name?.[0] || "U"} {/* ✅ fixed */}
               </div>
 
               <div>
                 <p className="font-medium">
-                  {idea.user?.name || "User"}
+                  {idea.user?.name || "User"} {/* ✅ fixed */}
                 </p>
               </div>
             </div>
 
             {/* CONTENT */}
-            <h2 className="font-bold mt-3">{idea.title}</h2>
-            <p className="text-gray-600">{idea.description}</p>
+            <h2 className="font-bold mt-3">
+              {idea.title}
+            </h2>
+
+            <p className="text-gray-600">
+              {idea.description}
+            </p>
 
             {/* ACTIONS */}
             <div className="flex gap-6 mt-4 text-sm">
-
               <button onClick={() => toggleLike(idea)}>
                 {hasLiked ? "❤️" : "🤍"} {likes.length}
               </button>
 
-              <span>💬 {idea.commentsCount || 0}</span>
-
+              <span>
+                💬 {idea.commentsCount || 0}
+              </span>
             </div>
 
             {/* COMMENTS */}
@@ -105,7 +118,6 @@ export default function FeedPage() {
           </div>
         );
       })}
-
     </main>
   );
 }
